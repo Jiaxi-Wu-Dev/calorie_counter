@@ -1,3 +1,15 @@
+# Calorie Counter
+
+## Problem Statement
+Keeps track of activities and food eaten and keeps track of it. 
+
+## Target users
+The target users are people who want to keep track of their calories
+
+## wire frame
+
+![alt text](https://raw.githubusercontent.com/Jiaxi-Wu-Dev/calorie_counter/master/src/assets/Wireframe.png "Calorie Counter")
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
