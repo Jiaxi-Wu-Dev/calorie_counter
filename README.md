@@ -1,9 +1,11 @@
 # Calorie Counter
 
 ## Problem Statement
-Keeps track of activities and food eaten and keeps track of it. 
+
+Keeps track of activities and food eaten and keeps track of it.
 
 ## Target users
+
 The target users are people who want to keep track of their calories
 
 ## wire frame
