@@ -4,12 +4,18 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
+      query: '',
       results: {},
       loading: false,
       message: "",
     };
   }
+
+    handleOnInputChange = ( event ) => {
+        const query = event.target.value;
+        this.setState ({query: query})
+    };
+
   render() {
     return (
       <div className="container">
@@ -20,6 +26,7 @@ class Search extends React.Component {
             value=""
             id="search input"
             placeholder="Search..."
+            onChange={this.handleOnInputChange}
           ></input>
         </label>
       </div>
