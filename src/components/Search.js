@@ -59,10 +59,10 @@ class Search extends React.Component {
               <div className="results-container">
                 { results.map( result => {
                     return(
-                        <a key={result.foodId} href={result.image} className="result-item">
+                        <a key={result.food.foodId} href={result.food.image} className="result-item">
                             <h6 className="image-username">{result.username}</h6>
                             <div className="image-wrapper">
-                                    <img className="image" src={result.image} alt={result.username}></img>
+                                    <img className="image" src={result.food.image} alt={result.username}></img>
                             </div>
                         </a>
                     )
