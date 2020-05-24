@@ -28,20 +28,38 @@ class ListTodosComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: { id: 1, description: "Learn React" },
-    };
+      //Created an Array to store different items
+      // use for adding different food items to calorie
+      todos: [
+        {id: 1, description : ' Apple '},
+        {id: 2, description : ' Cereal '},
+        {id: 3, description : ' Steak '},
+      ]
+    }
   }
+
   render() {
     return (
       <div>
         <h1>List Todos</h1>
-        <table> 
-          <thread>
+        <table>
+          <thead>
             <tr>
               <th>id</th>
               <th>description</th>
             </tr>
-          </thread>
+          </thead>
+          <tbody>
+            {
+              this.state.todos.map (
+                todo =>
+            <tr>
+              <td>{todo.id}</td>
+              <td>{todo.description}</td>
+            </tr>
+              )
+            }
+          </tbody>
         </table>
       </div>
     );
@@ -50,7 +68,7 @@ class ListTodosComponent extends Component {
 
 class WelcomeComponent extends Component {
   render() {
-    return <div>Welcome {this.props.match.params.name} </div>;
+    return <div>Welcome {this.props.match.params.name}. Add Your Food Items Here </div>;
   }
 }
 
