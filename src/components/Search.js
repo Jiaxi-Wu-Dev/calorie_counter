@@ -55,6 +55,11 @@ class Search extends React.Component {
     });
   };
 
+  addItemCalories = (e, data) => {
+      // you want to grab the items you clicked on 
+      console.log(data);
+    }
+
   renderSearchResults = () => {
     const { results } = this.state;
 
@@ -99,6 +104,7 @@ class Search extends React.Component {
             id="search input"
             placeholder="Search..."
             onChange={this.handleOnInputChange}
+            onClick={((e) => this.addItemCalories(e, data))}
           ></input>
         </label>
         {this.renderSearchResults()}
