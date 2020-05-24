@@ -73,8 +73,10 @@ class Search extends React.Component {
                   <img
                     className="image"
                     src={result.food.image}
-                    alt={result.username}
+                    alt="n/a"
                   ></img>
+                  <p>Name: {result.food.label}</p>
+                  <p>Calories: {result.food.nutrients.ENERC_KCAL}</p>
                 </div>
               </a>
             );
