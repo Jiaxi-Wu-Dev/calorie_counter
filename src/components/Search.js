@@ -1,5 +1,8 @@
+// https://www.youtube.com/watch?v=bv3U-Y3fmsA - resourced used
+
 import React from "react";
 import axios from "axios";
+import "../components/Search.css";
 
 class Search extends React.Component {
   constructor(props) {
@@ -23,16 +26,17 @@ class Search extends React.Component {
 
     axios
       .get(searchUrl, {
-        cancelToken: this.cancel.token
+        cancelToken: this.cancel.token,
       })
       .then((res) => {
-          const resultNotFound = ! res.data.hints.length
-                                ? 'There are no more search results'
-                                : '';
-            this.setState({results: res.data.hints,
-                            message: resultNotFound,
-                            loading: false
-        })
+        const resultNotFound = !res.data.hints.length
+          ? "There are no more search results"
+          : "";
+        this.setState({
+          results: res.data.hints,
+          message: resultNotFound,
+          loading: false,
+        });
       })
       .catch((error) => {
         if (axios.isCancel(error) || error) {
@@ -52,25 +56,33 @@ class Search extends React.Component {
   };
 
   renderSearchResults = () => {
-      const { results } = this.state;
+    const { results } = this.state;
 
-      if ( Object.keys( results ).length && results.length ) {
-          return (
-              <div className="results-container">
-                { results.map( result => {
-                    return(
-                        <a key={result.food.foodId} href={result.food.image} className="result-item">
-                            <h6 className="image-username">{result.username}</h6>
-                            <div className="image-wrapper">
-                                    <img className="image" src={result.food.image} alt={result.username}></img>
-                            </div>
-                        </a>
-                    )
-                })}
-              </div>
-          )
-      }
-  }
+    if (Object.keys(results).length && results.length) {
+      return (
+        <div className="results-container">
+          {results.map((result) => {
+            return (
+              <a
+                key={result.food.foodId}
+                href={result.food.image}
+                className="result-item"
+              >
+                <h6 className="image-username">{result.username}</h6>
+                <div className="image-wrapper">
+                  <img
+                    className="image"
+                    src={result.food.image}
+                    alt={result.username}
+                  ></img>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      );
+    }
+  };
 
   render() {
     const { query } = this.state;
