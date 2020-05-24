@@ -104,7 +104,7 @@ class Search extends React.Component {
             id="search input"
             placeholder="Search..."
             onChange={this.handleOnInputChange}
-            onClick={((e) => this.addItemCalories(e, data))}
+           /*  onClick={((e) => this.addItemCalories(e, data))} */
           ></input>
         </label>
         {this.renderSearchResults()}

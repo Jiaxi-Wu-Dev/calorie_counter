@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-import Search from "./components/Search"
-import Api from "./components/Api"
+import CalorieCounter from './components/calorie/CalorieCounter'
 
-function App() {
-  return <div className="App">
-    <Api />
-    <Search />
-  </div>;
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <CalorieCounter />
+      </div>
+    );
+  }
 }
 
 export default App;
