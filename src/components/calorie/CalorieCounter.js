@@ -1,14 +1,42 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 class CalorieCounter extends Component {
   render() {
     return (
       <div className="CalorieCounter">
         My Calorie Counter
-        <LoginComponent />
+        <Router>
+          <>
+            <Switch>
+              <Route path="/" exact component={LoginComponent} />
+              <Route path="/login" component={LoginComponent} />
+              <Route path="/welcome/:name" component={WelcomeComponent} />
+              <Route path="" component={ErrorComponent} />
+
+            </Switch>
+          </>
+        </Router>
+        {/* <LoginComponent />
+        <WelcomeComponent /> */}
       </div>
     );
   }
+}
+
+class WelcomeComponent extends Component {
+  render() {
+    return <div>Welcome {this.props.match.params.name} </div>;
+  }
+}
+
+function ErrorComponent() {
+  return (
+    <div>
+      {" "}
+      An Error Occured, wrong URL entered. Please go back and try again
+    </div>
+  );
 }
 
 class LoginComponent extends Component {
@@ -34,9 +62,10 @@ class LoginComponent extends Component {
 
   loginClicked() {
     if (this.state.username === "jiaxi" && this.state.password === "password") {
+      this.props.history.push(`/welcome/${this.state.username}`);
       console.log("Successful");
-      this.setState({ showSuccessMessage: true });
-      this.setState({ hasLoginFailed: false });
+      /* this.setState({ showSuccessMessage: true });
+      this.setState({ hasLoginFailed: false }); */
     } else {
       console.log("Incorrect login");
       this.setState({ showSuccessMessage: false });
@@ -48,7 +77,9 @@ class LoginComponent extends Component {
     return (
       <div className="LoginComponent">
         <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
-        <ShowLoginSuccessMessage showSuccessMessage={this.state.showSuccessMessage}/>
+        <ShowLoginSuccessMessage
+          showSuccessMessage={this.state.showSuccessMessage}
+        />
         User Name:{" "}
         <input
           type="text"
@@ -77,10 +108,10 @@ function ShowInvalidCredentials(props) {
 }
 
 function ShowLoginSuccessMessage(props) {
-  if(props.showSuccessMessage){
-    return <div> Login Successful </div>
+  if (props.showSuccessMessage) {
+    return <div> Login Successful </div>;
   }
-  return null
+  return null;
 }
 
 export default CalorieCounter;
