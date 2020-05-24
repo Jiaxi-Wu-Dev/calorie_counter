@@ -21,6 +21,7 @@ class LoginComponent extends Component {
     
 
     this.handleChange = this.handleChange.bind(this)
+    this.loginClicked = this.loginClicked.bind(this)
   }
 
 
@@ -31,9 +32,15 @@ class LoginComponent extends Component {
     });
   }
 
+  loginClicked(){
+      console.log(this.state)
+  }
+
   render() {
     return (
       <div className="LoginComponent">
+          <div>Invalid Credentials</div>
+          <div>Login Successful</div>
         User Name:{" "}
         <input
           type="text"
@@ -48,7 +55,7 @@ class LoginComponent extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button>Login</button>
+        <button onClick={this.loginClicked}>Login</button>
       </div>
     );
   }
