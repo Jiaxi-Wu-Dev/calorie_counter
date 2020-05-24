@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class CalorieCounter extends Component {
   render() {
@@ -12,13 +12,37 @@ class CalorieCounter extends Component {
               <Route path="/" exact component={LoginComponent} />
               <Route path="/login" component={LoginComponent} />
               <Route path="/welcome/:name" component={WelcomeComponent} />
+              <Route path="/todos" component={ListTodosComponent} />
               <Route path="" component={ErrorComponent} />
-
             </Switch>
           </>
         </Router>
         {/* <LoginComponent />
         <WelcomeComponent /> */}
+      </div>
+    );
+  }
+}
+
+class ListTodosComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todo: { id: 1, description: "Learn React" },
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1>List Todos</h1>
+        <table> 
+          <thread>
+            <tr>
+              <th>id</th>
+              <th>description</th>
+            </tr>
+          </thread>
+        </table>
       </div>
     );
   }
