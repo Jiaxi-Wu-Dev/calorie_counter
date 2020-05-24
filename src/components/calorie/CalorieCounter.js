@@ -17,30 +17,38 @@ class LoginComponent extends Component {
     this.state = {
       username: "username",
       password: "",
+      hasLoginFailed: false,
+      showSuccessMessage: false,
     };
-    
 
-    this.handleChange = this.handleChange.bind(this)
-    this.loginClicked = this.loginClicked.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.loginClicked = this.loginClicked.bind(this);
   }
-
 
   handleChange(event) {
     console.log(event.target.value);
     this.setState({
-      [event.target.name]:event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
-  loginClicked(){
-      console.log(this.state)
+  loginClicked() {
+    if (this.state.username === "jiaxi" && this.state.password === "password") {
+      console.log("Successful");
+      this.setState({ showSuccessMessage: true });
+      this.setState({ hasLoginFailed: false });
+    } else {
+      console.log("Incorrect login");
+      this.setState({ showSuccessMessage: false });
+      this.setState({ hasLoginFailed: true });
+    }
   }
 
   render() {
     return (
       <div className="LoginComponent">
-          <div>Invalid Credentials</div>
-          <div>Login Successful</div>
+        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+        <ShowLoginSuccessMessage showSuccessMessage={this.state.showSuccessMessage}/>
         User Name:{" "}
         <input
           type="text"
@@ -59,6 +67,20 @@ class LoginComponent extends Component {
       </div>
     );
   }
+}
+
+function ShowInvalidCredentials(props) {
+  if (props.hasLoginFailed) {
+    return <div> Invalid Credentials </div>;
+  }
+  return null;
+}
+
+function ShowLoginSuccessMessage(props) {
+  if(props.showSuccessMessage){
+    return <div> Login Successful </div>
+  }
+  return null
 }
 
 export default CalorieCounter;
