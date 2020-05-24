@@ -61,6 +61,9 @@ class Search extends React.Component {
                     return(
                         <a key={result.foodId} href={result.image} className="result-item">
                             <h6 className="image-username">{result.username}</h6>
+                            <div className="image-wrapper">
+                                    <img className="image" src={result.image} alt={result.username}></img>
+                            </div>
                         </a>
                     )
                 })}
@@ -84,6 +87,7 @@ class Search extends React.Component {
             onChange={this.handleOnInputChange}
           ></input>
         </label>
+        {this.renderSearchResults()}
       </div>
     );
   }
