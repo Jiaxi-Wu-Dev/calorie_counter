@@ -12,7 +12,7 @@ class HeaderComponent extends Component {
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
           <div>
-            <a className="navbar-brand">Calorie Counter</a>
+            <h2 className="navbar-brand">Calorie Counter</h2>
           </div>
           <ul className="navbar-nav">
             {isUserLoggedIn && (

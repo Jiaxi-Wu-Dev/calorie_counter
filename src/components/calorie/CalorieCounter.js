@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import AuthenticatedRoute from "./AuthenticatedRoute.jsx";
 import LoginComponent from "./LoginComponent.jsx";
 import HeaderComponent from "./HeaderComponent.jsx";
+import CalorieCounterService from '../../components/api/CalorieCounterService.js'
+
+
 class CalorieCounter extends Component {
   render() {
     return (
@@ -99,6 +102,10 @@ class ListTodosComponent extends Component {
 }
 
 class WelcomeComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
+  }
   render() {
     return (
       <>
@@ -107,8 +114,22 @@ class WelcomeComponent extends Component {
           Welcome {this.props.match.params.name}. Add Your Food Items{" "}
           <Link to="/todos">here</Link>
         </div>
+        <div className="container">
+          Click here to get a customized welcome message.
+          <button
+            onClick={this.retrieveWelcomeMessage}
+            className="btn btn-success"
+          >
+            Get Welcome Message
+          </button>
+        </div>
       </>
     );
+  }
+
+  retrieveWelcomeMessage() {
+    CalorieCounterService.executeCalorieCounterService()
+    .then(response => console.log(response) );
   }
 }
 
