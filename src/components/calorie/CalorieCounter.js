@@ -5,9 +5,9 @@ class CalorieCounter extends Component {
   render() {
     return (
       <div className="CalorieCounter">
-        My Calorie Counter
         <Router>
           <>
+            <HeaderComponent />
             <Switch>
               <Route path="/" exact component={LoginComponent} />
               <Route path="/login" component={LoginComponent} />
@@ -15,10 +15,43 @@ class CalorieCounter extends Component {
               <Route path="/todos" component={ListTodosComponent} />
               <Route path="" component={ErrorComponent} />
             </Switch>
+            <FooterComponent />
           </>
         </Router>
         {/* <LoginComponent />
         <WelcomeComponent /> */}
+      </div>
+    );
+  }
+}
+
+class HeaderComponent extends Component {
+  render() {
+    return (
+      <header>
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <div>
+            <a className="navbar-brand">Calorie Counter</a>
+          </div>
+          <ul className="navbar-nav">
+            <li className="nav-link">Home</li>
+            <li className="nav-link">Todos</li>
+          </ul>
+          <ul className="navbar-nav navbar-collapse justify-content-end">
+            <li className="nav-link">Login</li>
+            <li className="nav-link">Logout</li>
+          </ul>
+        </nav>
+      </header>
+    );
+  }
+}
+
+class FooterComponent extends Component {
+  render() {
+    return (
+      <div>
+        <hr /> Footer
       </div>
     );
   }
@@ -31,11 +64,11 @@ class ListTodosComponent extends Component {
       //Created an Array to store different items
       // use for adding different food items to calorie
       todos: [
-        {id: 1, description : ' Apple ', done:false, targetDate: new Date()},
-        {id: 2, description : ' Cereal ', done:false, targetDate: new Date()},
-        {id: 3, description : ' Steak ', done:false, targetDate: new Date()},
-      ]
-    }
+        { id: 1, description: " Apple ", done: false, targetDate: new Date() },
+        { id: 2, description: " Cereal ", done: false, targetDate: new Date() },
+        { id: 3, description: " Steak ", done: false, targetDate: new Date() },
+      ],
+    };
   }
 
   render() {
@@ -50,17 +83,14 @@ class ListTodosComponent extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.state.todos.map (
-                todo =>
-            <tr>
-              <td>{todo.id}</td>
-              <td>{todo.description}</td>
-              <td>{todo.done.toString()}</td>
-              <td>{todo.targetDate.toString()}</td>
-            </tr>
-              )
-            }
+            {this.state.todos.map((todo) => (
+              <tr>
+                <td>{todo.id}</td>
+                <td>{todo.description}</td>
+                <td>{todo.done.toString()}</td>
+                <td>{todo.targetDate.toString()}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -70,7 +100,12 @@ class ListTodosComponent extends Component {
 
 class WelcomeComponent extends Component {
   render() {
-    return <div>Welcome {this.props.match.params.name}. Add Your Food Items <Link to="/todos">here</Link></div>;
+    return (
+      <div>
+        Welcome {this.props.match.params.name}. Add Your Food Items{" "}
+        <Link to="/todos">here</Link>
+      </div>
+    );
   }
 }
 
