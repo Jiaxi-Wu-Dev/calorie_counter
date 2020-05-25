@@ -1,4 +1,4 @@
-package com.jiaxi.caloriecounter.caloriecounter;
+package com.jiaxi.caloriecounter.caloriecounter.helloworld;
 
 public class HelloWorldBean {
 
