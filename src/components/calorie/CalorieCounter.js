@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import AuthenticationService from "./AuthenticationService.js";
 
 class CalorieCounter extends Component {
   render() {
@@ -102,24 +103,26 @@ class ListTodosComponent extends Component {
     return (
       <div>
         <h1>List Todos</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.todos.map((todo) => (
+        <div className="container">
+          <table className="table">
+            <thead>
               <tr>
-                <td>{todo.id}</td>
-                <td>{todo.description}</td>
-                <td>{todo.done.toString()}</td>
-                <td>{todo.targetDate.toString()}</td>
+                <th>id</th>
+                <th>description</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.todos.map((todo) => (
+                <tr>
+                  <td>{todo.id}</td>
+                  <td>{todo.description}</td>
+                  <td>{todo.done.toString()}</td>
+                  <td>{todo.targetDate.toString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
@@ -130,7 +133,7 @@ class WelcomeComponent extends Component {
     return (
       <>
         <h1>Welcome!</h1>
-        <div class="container">
+        <div className="container">
           Welcome {this.props.match.params.name}. Add Your Food Items{" "}
           <Link to="/todos">here</Link>
         </div>
@@ -171,6 +174,7 @@ class LoginComponent extends Component {
 
   loginClicked() {
     if (this.state.username === "jiaxi" && this.state.password === "password") {
+      AuthenticationService.registerSuccessfulLogin();
       this.props.history.push(`/welcome/${this.state.username}`);
       console.log("Successful");
       /* this.setState({ showSuccessMessage: true });
@@ -187,10 +191,6 @@ class LoginComponent extends Component {
       <div className="LoginComponent">
         <h1>Login</h1>
         <div className="container"></div>
-        {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
-        <ShowLoginSuccessMessage
-          showSuccessMessage={this.state.showSuccessMessage}
-        /> */}
         {this.state.hasLoginFailed && (
           <div className="alert alert-warning">Invalid Credentials</div>
         )}
@@ -215,20 +215,6 @@ class LoginComponent extends Component {
       </div>
     );
   }
-}
-
-function ShowInvalidCredentials(props) {
-  if (props.hasLoginFailed) {
-    return <div> Invalid Credentials </div>;
-  }
-  return null;
-}
-
-function ShowLoginSuccessMessage(props) {
-  if (props.showSuccessMessage) {
-    return <div> Login Successful </div>;
-  }
-  return null;
 }
 
 export default CalorieCounter;
