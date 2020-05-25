@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 class CalorieCounter extends Component {
   render() {
@@ -31,9 +31,9 @@ class ListTodosComponent extends Component {
       //Created an Array to store different items
       // use for adding different food items to calorie
       todos: [
-        {id: 1, description : ' Apple '},
-        {id: 2, description : ' Cereal '},
-        {id: 3, description : ' Steak '},
+        {id: 1, description : ' Apple ', done:false, targetDate: new Date()},
+        {id: 2, description : ' Cereal ', done:false, targetDate: new Date()},
+        {id: 3, description : ' Steak ', done:false, targetDate: new Date()},
       ]
     }
   }
@@ -56,6 +56,8 @@ class ListTodosComponent extends Component {
             <tr>
               <td>{todo.id}</td>
               <td>{todo.description}</td>
+              <td>{todo.done.toString()}</td>
+              <td>{todo.targetDate.toString()}</td>
             </tr>
               )
             }
@@ -68,7 +70,7 @@ class ListTodosComponent extends Component {
 
 class WelcomeComponent extends Component {
   render() {
-    return <div>Welcome {this.props.match.params.name}. Add Your Food Items Here </div>;
+    return <div>Welcome {this.props.match.params.name}. Add Your Food Items <Link to="/todos">here</Link></div>;
   }
 }
 
