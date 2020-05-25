@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/Users/jiaxi/Desktop/Perscholas/hw/calorie_counter/calorie_counter_eclipse/.metadata/.plugins/org.eclipse.jdt.core
+2623317625.index
+3027250180.index

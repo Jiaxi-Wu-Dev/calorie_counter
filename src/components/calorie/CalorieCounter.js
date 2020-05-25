@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import AuthenticationService from "./AuthenticationService.js";
 import AuthenticatedRoute from "./AuthenticatedRoute.jsx";
-
+import LoginComponent from "./LoginComponent.jsx";
+import HeaderComponent from "./HeaderComponent.jsx";
 class CalorieCounter extends Component {
   render() {
     return (
@@ -30,59 +30,6 @@ class CalorieCounter extends Component {
         {/* <LoginComponent />
         <WelcomeComponent /> */}
       </div>
-    );
-  }
-}
-
-class HeaderComponent extends Component {
-  render() {
-    const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-    console.log(isUserLoggedIn);
-
-    return (
-      <header>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div>
-            <a className="navbar-brand">Calorie Counter</a>
-          </div>
-          <ul className="navbar-nav">
-            {isUserLoggedIn && (
-              <li>
-                <Link className="nav-link" to="/welcome/jiaxi">
-                  Home
-                </Link>
-              </li>
-            )}
-            {isUserLoggedIn && (
-              <li>
-                <Link className="nav-link" to="/todos">
-                  Todos
-                </Link>
-              </li>
-            )}
-          </ul>
-          <ul className="navbar-nav navbar-collapse justify-content-end">
-            {!isUserLoggedIn && (
-              <li>
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
-            )}
-            {isUserLoggedIn && (
-              <li>
-                <Link
-                  className="nav-link"
-                  to="/logout"
-                  onClick={AuthenticationService.logout}
-                >
-                  Logout
-                </Link>
-              </li>
-            )}
-          </ul>
-        </nav>
-      </header>
     );
   }
 }
@@ -129,13 +76,14 @@ class ListTodosComponent extends Component {
           <table className="table">
             <thead>
               <tr>
-                <th>id</th>
-                <th>description</th>
+                <th>Description</th>
+                <th>Target Date</th>
+                <th>Is Completed?</th>
               </tr>
             </thead>
             <tbody>
               {this.state.todos.map((todo) => (
-                <tr>
+                <tr key={todo.id}>
                   <td>{todo.id}</td>
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
@@ -171,75 +119,6 @@ function ErrorComponent() {
       An Error Occured, wrong URL entered. Please go back and try again
     </div>
   );
-}
-
-class LoginComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "username",
-      password: "",
-      hasLoginFailed: false,
-      showSuccessMessage: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.loginClicked = this.loginClicked.bind(this);
-  }
-
-  handleChange(event) {
-    console.log(event.target.value);
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  loginClicked() {
-    if (this.state.username === "jiaxi" && this.state.password === "password") {
-      AuthenticationService.registerSuccessfulLogin(
-        this.state.username,
-        this.state.password
-      );
-      this.props.history.push(`/welcome/${this.state.username}`);
-      console.log("Successful");
-      /* this.setState({ showSuccessMessage: true });
-      this.setState({ hasLoginFailed: false }); */
-    } else {
-      console.log("Incorrect login");
-      this.setState({ showSuccessMessage: false });
-      this.setState({ hasLoginFailed: true });
-    }
-  }
-
-  render() {
-    return (
-      <div className="LoginComponent">
-        <h1>Login</h1>
-        <div className="container"></div>
-        {this.state.hasLoginFailed && (
-          <div className="alert alert-warning">Invalid Credentials</div>
-        )}
-        {this.state.showSuccessMessage && <div>Login Successful</div>}
-        User Name:{" "}
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        Password:{" "}
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <button className="btn btn-success" onClick={this.loginClicked}>
-          Login
-        </button>
-      </div>
-    );
-  }
 }
 
 export default CalorieCounter;
