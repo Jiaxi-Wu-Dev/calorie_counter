@@ -13,6 +13,7 @@ class CalorieCounter extends Component {
               <Route path="/login" component={LoginComponent} />
               <Route path="/welcome/:name" component={WelcomeComponent} />
               <Route path="/todos" component={ListTodosComponent} />
+              <Route path="/logout" component={LogoutComponent} />
               <Route path="" component={ErrorComponent} />
             </Switch>
             <FooterComponent />
@@ -34,12 +35,28 @@ class HeaderComponent extends Component {
             <a className="navbar-brand">Calorie Counter</a>
           </div>
           <ul className="navbar-nav">
-            <li className="nav-link">Home</li>
-            <li className="nav-link">Todos</li>
+            <li>
+              <Link className="nav-link" to="/welcome/jiaxi">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link" to="/todos">
+                Todos
+              </Link>
+            </li>
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            <li className="nav-link">Login</li>
-            <li className="nav-link">Logout</li>
+            <li>
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link" to="/logout">
+                Logout
+              </Link>
+            </li>
           </ul>
         </nav>
       </header>
@@ -47,16 +64,26 @@ class HeaderComponent extends Component {
   }
 }
 
-class FooterComponent extends Component {
+class LogoutComponent extends Component {
   render() {
     return (
       <div>
-        <hr /> Footer
+        <h1>You are logged out</h1>
+        <div className="container">Thank you for visiting!</div>
       </div>
     );
   }
 }
 
+class FooterComponent extends Component {
+  render() {
+    return (
+      <footer className="footer">
+        <span className="text-muted"> All Rights Reserved 2020</span>
+      </footer>
+    );
+  }
+}
 class ListTodosComponent extends Component {
   constructor(props) {
     super(props);
@@ -101,10 +128,13 @@ class ListTodosComponent extends Component {
 class WelcomeComponent extends Component {
   render() {
     return (
-      <div>
-        Welcome {this.props.match.params.name}. Add Your Food Items{" "}
-        <Link to="/todos">here</Link>
-      </div>
+      <>
+        <h1>Welcome!</h1>
+        <div class="container">
+          Welcome {this.props.match.params.name}. Add Your Food Items{" "}
+          <Link to="/todos">here</Link>
+        </div>
+      </>
     );
   }
 }
@@ -155,10 +185,16 @@ class LoginComponent extends Component {
   render() {
     return (
       <div className="LoginComponent">
-        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+        <h1>Login</h1>
+        <div className="container"></div>
+        {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
         <ShowLoginSuccessMessage
           showSuccessMessage={this.state.showSuccessMessage}
-        />
+        /> */}
+        {this.state.hasLoginFailed && (
+          <div className="alert alert-warning">Invalid Credentials</div>
+        )}
+        {this.state.showSuccessMessage && <div>Login Successful</div>}
         User Name:{" "}
         <input
           type="text"
@@ -173,7 +209,9 @@ class LoginComponent extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button onClick={this.loginClicked}>Login</button>
+        <button className="btn btn-success" onClick={this.loginClicked}>
+          Login
+        </button>
       </div>
     );
   }
