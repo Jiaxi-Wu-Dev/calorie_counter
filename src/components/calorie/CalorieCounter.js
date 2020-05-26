@@ -80,6 +80,7 @@ class ListTodosComponent extends Component {
     console.log("componentWillUnmount");
   }
 
+  
   shouldComponentUpdate(nextProps, nextState) {
     console.log("ShouldcompnentUpdate");
     console.log(nextProps);
