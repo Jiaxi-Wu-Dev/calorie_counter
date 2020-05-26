@@ -3,7 +3,10 @@ import moment from "moment";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import CalorieDataService from "../api/CalorieDataService.js";
 import AuthenticationService from "./AuthenticationService.js";
-import Api from "../Api";
+<<<<<<< HEAD
+
+=======
+>>>>>>> parent of 159e74a... quick fixes
 
 class CalorieComponent extends Component {
   constructor(props) {
@@ -66,7 +69,6 @@ class CalorieComponent extends Component {
     let { description, targetDate } = this.state;
     return (
       <div>
-        <Api />
         <h1>To Do</h1>
         <div className="container">
           <Formik
@@ -99,14 +101,6 @@ class CalorieComponent extends Component {
                     className="form-control"
                     type="text"
                     name="description"
-                  />
-                </fieldset>
-                <fieldset className="form-group">
-                  <label>Calories</label>
-                  <Field
-                    className="form-control"
-                    type="number"
-                    name="calories"
                   />
                 </fieldset>
                 <fieldset className="form-group">
