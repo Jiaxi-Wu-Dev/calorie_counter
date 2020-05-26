@@ -9,10 +9,6 @@ import CalorieCounterService from "../../components/api/CalorieCounterService.js
 import CalorieDataService from "../../components/api/CalorieDataService";
 import AuthenticationService from "./AuthenticationService.js";
 import CalorieComponent from "./CalorieComponent";
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 159e74a... quick fixes
 
 class CalorieCounter extends Component {
   render() {
@@ -64,7 +60,7 @@ class FooterComponent extends Component {
   render() {
     return (
       <footer className="footer">
-        <span className="text-muted"> All Rights Reserved 2020</span>
+        <span className="text-muted"></span>
       </footer>
     );
   }
