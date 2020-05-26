@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class TodoDataService {
+class CalorieDataService {
   retrieveAllTodos(name) {
     return axios.get(`http://localhost:8080/users/${name}/todos`);
   }
@@ -22,4 +22,4 @@ class TodoDataService {
   }
 }
 
-export default new TodoDataService();
+export default new CalorieDataService();

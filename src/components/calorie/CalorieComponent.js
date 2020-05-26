@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import CalorieDataService from "../api/CalorieDataService";
-import AuthenticationService from "../calorie/AuthenticationService";
+import CalorieDataService from "../api/CalorieDataService.js";
+import AuthenticationService from "./AuthenticationService.js";
 
 class CalorieComponent extends Component {
   constructor(props) {
