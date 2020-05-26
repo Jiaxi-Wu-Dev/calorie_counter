@@ -8,11 +8,16 @@ Keeps track of activities and food eaten and keeps track of it.
 
 The target users are people who want to keep track of their calories
 
-## wire frame
+## Wireframe
 
 ![alt text](https://raw.githubusercontent.com/Jiaxi-Wu-Dev/calorie_counter/master/src/assets/Wireframe.png "Calorie Counter")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Resources Used
+
+https://www.youtube.com/watch?v=bv3U-Y3fmsA
+Go Java Full Stack with Spring Boot and React by in28MinutesOfficial
 
 ## Available Scripts
 

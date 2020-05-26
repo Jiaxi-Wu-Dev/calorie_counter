@@ -1,3 +1,5 @@
+//resource used Go Java Full Stack with Spring Boot and React by in28MinutesOfficial
+
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import AuthenticatedRoute from "./AuthenticatedRoute.jsx";
@@ -67,12 +69,11 @@ class ListTodosComponent extends Component {
     this.state = {
       //Created an Array to store different items
       // use for adding different food items to calorie
-      todos: [
-        /* { id: 1, description: " Apple ", done: false, targetDate: new Date() },
-        { id: 2, description: " Cereal ", done: false, targetDate: new Date() },
-        { id: 3, description: " Steak ", done: false, targetDate: new Date() }, */
-      ],
+      todos: [],
+      message: null,
     };
+    this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
+    this.refreshTodos = this.refreshTodos.bind(this);
   }
 
   //
@@ -80,7 +81,6 @@ class ListTodosComponent extends Component {
     console.log("componentWillUnmount");
   }
 
-  
   shouldComponentUpdate(nextProps, nextState) {
     console.log("ShouldcompnentUpdate");
     console.log(nextProps);
@@ -90,9 +90,24 @@ class ListTodosComponent extends Component {
 
   componentDidMount() {
     console.log("componentDidMount");
+
+    this.refreshTodos();
+    console.log(this.state);
+  }
+
+  //refresh page after delete
+  refreshTodos() {
     let username = AuthenticationService.getLoggedInUserName();
     CalorieDataService.retrieveAllTodos(username).then((response) => {
       this.setState({ todos: response.data });
+    });
+  }
+  //delete the item that is clicked on
+  deleteTodoClicked(id) {
+    let username = AuthenticationService.getLoggedInUserName();
+    CalorieDataService.deleteTodo(username, id).then((response) => {
+      this.setState({ message: `Delete of todo ${id} successful` });
+      this.refreshTodos();
     });
   }
 
@@ -101,6 +116,9 @@ class ListTodosComponent extends Component {
     return (
       <div>
         <h1>List Todos</h1>
+        {this.state.message && (
+          <div className="alert alert-success">{this.state.message}</div>
+        )}
         <div className="container">
           <table className="table">
             <thead>
@@ -108,6 +126,7 @@ class ListTodosComponent extends Component {
                 <th>Description</th>
                 <th>Target Date</th>
                 <th>Is Completed?</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -117,6 +136,14 @@ class ListTodosComponent extends Component {
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
+                  <td>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => this.deleteTodoClicked(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
