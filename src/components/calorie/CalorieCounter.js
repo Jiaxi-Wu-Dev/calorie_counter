@@ -5,7 +5,7 @@ import LoginComponent from "./LoginComponent.jsx";
 import HeaderComponent from "./HeaderComponent.jsx";
 import CalorieCounterService from "../../components/api/CalorieCounterService.js";
 import CalorieDataService from "../../components/api/CalorieDataService";
-import AuthenticationService from "./AuthenticationService.js"
+import AuthenticationService from "./AuthenticationService.js";
 
 class CalorieCounter extends Component {
   render() {
@@ -58,10 +58,11 @@ class FooterComponent extends Component {
     );
   }
 }
-class ListTodosComponent extends Component {
 
+//Create class to list the items added
+class ListTodosComponent extends Component {
   constructor(props) {
-    console.log('constructor')
+    console.log("constructor");
     super(props);
     this.state = {
       //Created an Array to store different items
@@ -74,19 +75,28 @@ class ListTodosComponent extends Component {
     };
   }
 
+  //
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("ShouldcompnentUpdate");
+    console.log(nextProps);
+    console.log(nextState);
+    return true;
+  }
+
   componentDidMount() {
-    console.log('componentDidMount')
-    let username = AuthenticationService.getLoggedInUserName()
-    CalorieDataService.retrieveAllTodos(username)
-    .then(
-      response => {
-        this.setState({todos : response.data})
-      }
-    )
+    console.log("componentDidMount");
+    let username = AuthenticationService.getLoggedInUserName();
+    CalorieDataService.retrieveAllTodos(username).then((response) => {
+      this.setState({ todos: response.data });
+    });
   }
 
   render() {
-    console.log('render')
+    console.log("render");
     return (
       <div>
         <h1>List Todos</h1>
