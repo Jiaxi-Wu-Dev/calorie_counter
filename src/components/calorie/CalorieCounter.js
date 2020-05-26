@@ -34,6 +34,7 @@ class CalorieCounter extends Component {
               />
               <AuthenticatedRoute path="/logout" component={LogoutComponent} />
               <Route path="" component={ErrorComponent} />
+             
             </Switch>
             <FooterComponent />
           </>
@@ -159,12 +160,7 @@ class ListTodosComponent extends Component {
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
                   <td>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => this.updateTodoClicked(todo.id)}
-                    >
-                      Update
-                    </button>
+                   c
                     <button
                       className="btn btn-warning"
                       onClick={() => this.deleteTodoClicked(todo.id)}

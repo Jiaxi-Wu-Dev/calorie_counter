@@ -3,7 +3,7 @@ import moment from "moment";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import CalorieDataService from "../api/CalorieDataService.js";
 import AuthenticationService from "./AuthenticationService.js";
-
+import Search from "../Search";
 
 class CalorieComponent extends Component {
   constructor(props) {
@@ -65,9 +65,7 @@ class CalorieComponent extends Component {
   render() {
     let { description, targetDate } = this.state;
     return (
-        
       <div>
-        <h1>To Do</h1>
         <div className="container">
           <Formik
             initialValues={{
@@ -83,6 +81,7 @@ class CalorieComponent extends Component {
           >
             {(props) => (
               <Form>
+                <Search />
                 <ErrorMessage
                   name="description"
                   component="div"
