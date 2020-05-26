@@ -16,7 +16,8 @@ class Search extends React.Component {
     this.cancel = "";
   }
   fetchSearchResults = (query) => {
-    const searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=4f903669&app_key=d13ce675ba01b3c47f4d949d2a628c33`;
+    const searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=aa116602&app_key=
+    f4a908c7f196d176e54c7062a42fa6e8`;
 
     if (this.cancel) {
       this.cancel.cancel();
@@ -55,10 +56,10 @@ class Search extends React.Component {
     });
   };
 
-  addItemCalories = (e, data) => {
-      // you want to grab the items you clicked on 
-      console.log(data);
-    }
+  addItem = (data) => {
+    // you want to grab the items you clicked on
+    console.log(data);
+  };
 
   renderSearchResults = () => {
     const { results } = this.state;
@@ -82,6 +83,9 @@ class Search extends React.Component {
                   ></img>
                   <p>Name: {result.food.label}</p>
                   <p>Calories: {result.food.nutrients.ENERC_KCAL}</p>
+                  <button className="btn btn-warning" onClick={this.addItem}>
+                    Add
+                  </button>
                 </div>
               </a>
             );
@@ -104,7 +108,7 @@ class Search extends React.Component {
             id="search input"
             placeholder="Search..."
             onChange={this.handleOnInputChange}
-           /*  onClick={((e) => this.addItemCalories(e, data))} */
+            /*  onClick={((e) => this.addItemCalories(e, data))} */
           ></input>
         </label>
         {this.renderSearchResults()}

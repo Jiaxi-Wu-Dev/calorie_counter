@@ -9,6 +9,7 @@ import CalorieCounterService from "../../components/api/CalorieCounterService.js
 import CalorieDataService from "../../components/api/CalorieDataService";
 import AuthenticationService from "./AuthenticationService.js";
 import CalorieComponent from "./CalorieComponent";
+import Search from "../Search"
 
 class CalorieCounter extends Component {
   render() {
