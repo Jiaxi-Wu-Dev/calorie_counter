@@ -18,10 +18,10 @@ class CalorieComponent extends Component {
 
   componentDidMount() {
     let username = AuthenticationService.getLoggedInUserName();
-    CalorieDataService.retrieveTodo(username, this.state.id).then((response) =>
+    CalorieDataService.retrieveTodo(username, this.state.id).then(response =>
       this.setState({
         description: response.data.description,
-        targetDate: response.data.targetDate,
+        targetDate: moment(response.data.targetDate).format("YYYY-MM-DD"),
       })
     );
   }
