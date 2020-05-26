@@ -35,6 +35,7 @@ class CalorieCounter extends Component {
               />
               <AuthenticatedRoute path="/logout" component={LogoutComponent} />
               <Route path="" component={ErrorComponent} />
+             
             </Switch>
             <FooterComponent />
           </>
@@ -138,7 +139,7 @@ class ListTodosComponent extends Component {
     console.log("render");
     return (
       <div>
-        <h1>List Todos</h1>
+        <h1>Foods</h1>
         {this.state.message && (
           <div className="alert alert-success">{this.state.message}</div>
         )}
@@ -147,9 +148,9 @@ class ListTodosComponent extends Component {
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Target Date</th>
-                <th>Is Completed?</th>
-                <th>Delete</th>
+                <th>Food</th>
+                <th>Calories</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -160,12 +161,7 @@ class ListTodosComponent extends Component {
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
                   <td>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => this.updateTodoClicked(todo.id)}
-                    >
-                      Update
-                    </button>
+                   c
                     <button
                       className="btn btn-warning"
                       onClick={() => this.deleteTodoClicked(todo.id)}
