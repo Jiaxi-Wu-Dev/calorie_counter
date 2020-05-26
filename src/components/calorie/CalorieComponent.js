@@ -17,8 +17,11 @@ class CalorieComponent extends Component {
   }
 
   componentDidMount() {
+    if (this.state.id === -1) {
+      return;
+    }
     let username = AuthenticationService.getLoggedInUserName();
-    CalorieDataService.retrieveTodo(username, this.state.id).then(response =>
+    CalorieDataService.retrieveTodo(username, this.state.id).then((response) =>
       this.setState({
         description: response.data.description,
         targetDate: moment(response.data.targetDate).format("YYYY-MM-DD"),
@@ -41,8 +44,23 @@ class CalorieComponent extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    let username = AuthenticationService.getLoggedInUserName();
+
+    if (this.state.id === -1) {
+      CalorieDataService.createTodo(username, {
+        id: this.state.id,
+        description: values.description,
+        targetDate: values.targetDate,
+      }).then(() => this.props.history.push("/todos"));
+    } else {
+      CalorieDataService.updateTodo(username, this.state.id, {
+        id: this.state.id,
+        description: values.description,
+        targetDate: values.targetDate,
+      });
+    }
   }
+
   render() {
     let { description, targetDate } = this.state;
     return (
