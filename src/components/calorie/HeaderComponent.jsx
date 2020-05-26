@@ -25,7 +25,7 @@ class HeaderComponent extends Component {
             {isUserLoggedIn && (
               <li>
                 <Link className="nav-link" to="/todos">
-                  Todos
+                  Food List
                 </Link>
               </li>
             )}

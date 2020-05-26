@@ -9,6 +9,7 @@ import CalorieCounterService from "../../components/api/CalorieCounterService.js
 import CalorieDataService from "../../components/api/CalorieDataService";
 import AuthenticationService from "./AuthenticationService.js";
 import CalorieComponent from "./CalorieComponent";
+import Api from "../Api";
 
 class CalorieCounter extends Component {
   render() {
@@ -38,6 +39,7 @@ class CalorieCounter extends Component {
             <FooterComponent />
           </>
         </Router>
+
         {/* <LoginComponent />
         <WelcomeComponent /> */}
       </div>
@@ -137,7 +139,7 @@ class ListTodosComponent extends Component {
     console.log("render");
     return (
       <div>
-        <h1>List Todos</h1>
+        <h1>Food Items</h1>
         {this.state.message && (
           <div className="alert alert-success">{this.state.message}</div>
         )}
@@ -146,9 +148,9 @@ class ListTodosComponent extends Component {
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Target Date</th>
-                <th>Is Completed?</th>
-                <th>Delete</th>
+                <th>Food Item</th>
+                <th>Calories</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
