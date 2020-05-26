@@ -3,7 +3,7 @@ import moment from "moment";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import CalorieDataService from "../api/CalorieDataService.js";
 import AuthenticationService from "./AuthenticationService.js";
-import Api from "../Api";
+
 
 class CalorieComponent extends Component {
   constructor(props) {
