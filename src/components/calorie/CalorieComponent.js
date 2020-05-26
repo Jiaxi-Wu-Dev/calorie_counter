@@ -65,8 +65,8 @@ class CalorieComponent extends Component {
   render() {
     let { description, targetDate } = this.state;
     return (
+        
       <div>
-        <Api />
         <h1>To Do</h1>
         <div className="container">
           <Formik
