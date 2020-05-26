@@ -18,27 +18,31 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class CalorieCounterResource {
+public class CalorieCounterJpaResource {
 
 	@Autowired
 	private TodoHardcodedService todoService;
 	
-	@GetMapping("/users/{username}/todos")
+	@Autowired
+	private TodoHardcodedService todoJpaRepository;
+	
+	@GetMapping("/jpa/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username){
+		return todoJpaRepository.findByUsername(username);
 		return todoService.findAll();
 	}
 	
 	
 	//Creating UPDATE 
-	@GetMapping("/users/{username}/todos/{id}")
+	@GetMapping("/jpa/users/{username}/todos/{id}")
 	public Todo getTodo(@PathVariable String username, @PathVariable long id){
-		return todoService.findById(id);
+		return todoJpaRepository.findById(id).get();
 	}
 	
 	
 	
 	//creating DELETE 
-	@DeleteMapping("/users/{username}/todos/{id}")
+	@DeleteMapping("/jpa/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
 		
 		//invoking todoservice delete method, if delete was successful, it will return todo back
@@ -49,14 +53,14 @@ public class CalorieCounterResource {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping("/users/{username}/todos/{id}")
+	@PutMapping("/jpa/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo ){
 		Todo todoUpdated = todoService.save(todo);
 		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	
 	}
 	
-	@PostMapping("/users/{username}/todos/{id}")
+	@PostMapping("/jpa/users/{username}/todos/{id}")
 	public ResponseEntity<Void> updateTodo(@PathVariable String username, @RequestBody Todo todo ){
 		Todo createdTodo = todoService.save(todo);
 		

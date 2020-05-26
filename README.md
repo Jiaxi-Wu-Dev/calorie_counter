@@ -1,5 +1,7 @@
 # Calorie Counter
 
+[Calorie Counter](https://calorie-counter-c.herokuapp.com/)
+
 ## Problem Statement
 
 Keeps track of activities and food eaten and keeps track of it.
