@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@CrossOrigin(origins="http://localhost:3000")
 public class CalorieCounterResource {
 
 	@Autowired
@@ -20,6 +21,15 @@ public class CalorieCounterResource {
 	public List<Todo> getAllTodos(@PathVariable String username){
 		return todoService.findAll();
 	}
+	
+	
+	//Creating UPDATE 
+	@GetMapping("/users/{username}/todos/{id}")
+	public Todo getTodo(@PathVariable String username, @PathVariable long id){
+		return todoService.findById(id);
+	}
+	
+	
 	
 	//creating DELETE 
 	@DeleteMapping("/users/{username}/todos/{id}")
