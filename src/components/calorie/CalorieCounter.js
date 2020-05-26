@@ -138,7 +138,7 @@ class ListTodosComponent extends Component {
     console.log("render");
     return (
       <div>
-        <h1>List Todos</h1>
+        <h1>Foods</h1>
         {this.state.message && (
           <div className="alert alert-success">{this.state.message}</div>
         )}
@@ -147,9 +147,9 @@ class ListTodosComponent extends Component {
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Target Date</th>
-                <th>Is Completed?</th>
-                <th>Delete</th>
+                <th>Food</th>
+                <th>Calories</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>

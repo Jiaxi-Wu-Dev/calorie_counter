@@ -10,7 +10,7 @@ class CalorieComponent extends Component {
     super(props);
     this.state = {
       id: 1,
-      description: "Learn Forms",
+      description: "Foods",
       targetDate: moment(new Date()).format("YYYY-MM-DD"),
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -101,7 +101,7 @@ class CalorieComponent extends Component {
                   />
                 </fieldset>
                 <fieldset className="form-group">
-                  <label>Target Date</label>
+                  <label>Date</label>
                   <Field
                     className="form-control"
                     type="date"
